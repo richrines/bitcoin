@@ -1,9 +1,11 @@
 require 'btce'
 
 class BtceGateway
-  def btce_pull
-    instantiate_ticker
+  def initialize
+    @ticker ||= Btce::Ticker.new "btc_usd"
+  end
 
+  def btce_pull
     BitcoinPrice.create!(
       avg: @ticker.avg,
       buy: @ticker.buy,
@@ -16,12 +18,6 @@ class BtceGateway
     )
   end
 
-  private
-
-  def instantiate_ticker
-    @ticker ||= Btce::Ticker.new "btc_usd"
-  end
-
   def first_derivative
   end
 
@@ -30,9 +26,16 @@ class BtceGateway
 
   def five_period_moving_average
     last_five = BitcoinPrice.find(:all, order: "created_at desc", limit: 5)
+    moving_average(last_five)
   end
 
   def ten_period_moving_average
     last_ten = BitcoinPrice.find(:all, order: "created_at desc", limit: 10)
+    moving_average(last_ten)
+  end
+
+  def moving_average(records)
+    prive_array = records.map { |price| price.buy }
+    moving_average = prive_array.inject{ |sum, price| sum + price }.to_f / prive_array.size
   end
 end
