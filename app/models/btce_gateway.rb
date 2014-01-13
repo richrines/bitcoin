@@ -1,0 +1,2 @@
+class BtceGateway
+end
