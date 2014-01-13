@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140113053546) do
     t.float    "five_period"
     t.float    "first_derivative_five"
     t.float    "second_derivative_five"
+    t.float    "spread",                 null: false
     t.float    "ten_period"
     t.float    "first_derivative_ten"
     t.float    "second_derivative_ten"
