@@ -11,29 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113053546) do
+ActiveRecord::Schema.define(version: 20140114064233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bitcoin_prices", force: true do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.float    "avg",                    null: false
-    t.float    "buy",                    null: false
-    t.float    "high",                   null: false
-    t.float    "last",                   null: false
-    t.float    "low",                    null: false
-    t.float    "vol",                    null: false
-    t.float    "vol_cur",                null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.float    "avg",                                    null: false
+    t.float    "buy",                                    null: false
+    t.float    "high",                                   null: false
+    t.float    "last",                                   null: false
+    t.float    "low",                                    null: false
+    t.float    "vol",                                    null: false
+    t.float    "vol_cur",                                null: false
     t.float    "five_period"
     t.float    "first_derivative_five"
     t.float    "second_derivative_five"
-    t.float    "spread",                 null: false
+    t.float    "spread",                                 null: false
     t.float    "ten_period"
     t.float    "first_derivative_ten"
     t.float    "second_derivative_ten"
-    t.integer  "server_time",            null: false
+    t.integer  "server_time",                            null: false
+    t.boolean  "email_sent",             default: false, null: false
+    t.string   "email_type"
   end
 
   create_table "delayed_jobs", force: true do |t|
