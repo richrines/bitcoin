@@ -1,3 +1,29 @@
-<%= @previous_record.inspect %>
-<%= @bitcoin_price.inspect %>
-
+<table border="1">
+<tr>
+<th> Id </th>
+<th> Buy </th>
+<th> 1st derivative </th>
+<th> 2nd derivative </th>
+<th> 5 period moving average </th>
+<th> 10 period moving average </th>
+<th> Created At </th>
+</tr>
+<tr>
+<td><%= @previous_record.id %></td>
+<td><%= number_to_currency @previous_record.buy %></td>
+<td><%= @previous_record.first_derivative_five.round(2) %></td>
+<td><%= @previous_record.second_derivative_five.round(2) %></td>
+<td><%= number_to_currency @previous_record.five_period %></td>
+<td><%= number_to_currency @previous_record.ten_period %></td>
+<td><%= @previous_record.created_at %></td>
+</tr>
+<tr>
+<td><%= @bitcoin_price.id %></td>
+<td><%= number_to_currency @bitcoin_price.buy %></td>
+<td><%= @bitcoin_price.first_derivative_five.round(2) %></td>
+<td><%= @bitcoin_price.second_derivative_five.round(2) %></td>
+<td><%= number_to_currency @bitcoin_price.five_period %></td>
+<td><%= number_to_currency @bitcoin_price.ten_period %></td>
+<td><%= @bitcoin_price.created_at %></td>
+</tr>
+</table>
