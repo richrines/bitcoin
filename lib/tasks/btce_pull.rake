@@ -9,19 +9,21 @@ task btce_pull: :environment do
     d = b.id - 1
     c = BitcoinPrice.find(d)
     if c.first_derivative_five >= 0.0
+      e = BitcoinPrice.find(b.id)
       BitcoinPriceMailer.send_sell_email(b.id).deliver
-      b.email_sent = true
-      b.email_type = 'sell'
-      b.save!
+      e.email_sent = true
+      e.email_type = 'sell'
+      e.save!
     end
   elsif b.first_derivative_five > 0.0 && b.second_derivative_five > 0.0
     d = b.id - 1
     c = BitcoinPrice.find(d)
     if c.first_derivative_five <= 0.0 && c.second_derivative_five <= 0.0
+      e = BitcoinPrice.find(b.id)
       BitcoinPriceMailer.send_buy_email(b.id).deliver
-      b.email_sent = true
-      b.email_type = 'buy'
-      b.save!
+      e.email_sent = true
+      e.email_type = 'buy'
+      e.save!
     end
   end
 end
